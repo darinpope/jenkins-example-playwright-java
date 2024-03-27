@@ -2,7 +2,7 @@ pipeline {
   agent { label 'macos' }
   environment {
     TEST_JENKINS_URL="https://cb.codes101.com/jpi/"
-    TEST_USER=credentials('test-jenkins-admin-user')
+    TEST_LOGIN=credentials('test-jenkins-admin-user')
   }
   stages {
     stage('Run the tests') {
