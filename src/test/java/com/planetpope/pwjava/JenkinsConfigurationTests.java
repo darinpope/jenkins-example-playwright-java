@@ -1,5 +1,7 @@
 package com.planetpope.pwjava;
 
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
+
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.Browser.NewContextOptions;
 import com.microsoft.playwright.BrowserContext;
@@ -8,7 +10,6 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 import com.microsoft.playwright.options.AriaRole;
 import com.microsoft.playwright.options.RecordVideoSize;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -17,8 +18,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 public class JenkinsConfigurationTests {
     private static Playwright playwright;
@@ -70,20 +69,20 @@ public class JenkinsConfigurationTests {
 
         assertThat(page.getByText("Build Executor Status")).isVisible();
         page.waitForTimeout(2000);
-        page.navigate(testUrl+"logout");
+        page.navigate(testUrl + "logout");
         page.waitForTimeout(2000);
-        writeVideo(page,"LoginLogout.webm");
+        writeVideo(page, "LoginLogout.webm");
     }
 
     private void writeVideo(Page page, String videoFilename) {
-      Path originalVideoPath=page.video().path();
-      Path videoFilePath = Paths.get(videosFolder,videoFilename);
-      try {
-        Files.deleteIfExists(videoFilePath);
-        Files.move(originalVideoPath, videoFilePath);
-      } catch(Exception e) {
-        e.printStackTrace();
-      }
+        Path originalVideoPath = page.video().path();
+        Path videoFilePath = Paths.get(videosFolder, videoFilename);
+        try {
+            Files.deleteIfExists(videoFilePath);
+            Files.move(originalVideoPath, videoFilePath);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @AfterEach
