@@ -62,6 +62,7 @@ public class JenkinsConfigurationTests {
     @Test
     public void loginToController() {
         page.navigate(testUrl);
+        assertThat(page.getByText("Keep me signed in")).isVisible();
         page.getByLabel("Username").fill(loginUsername);
         page.getByLabel("Password").fill(loginPassword);
         page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Sign in"))
