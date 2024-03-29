@@ -23,6 +23,7 @@ pipeline {
       environment {
         VIEWPORT_WIDTH="1290"
         VIEWPORT_HEIGHT="2796"
+        MOBILE="true"
       }
       steps {
         sh './mvnw clean test'
@@ -32,6 +33,7 @@ pipeline {
       environment {
         VIEWPORT_WIDTH="1080"
         VIEWPORT_HEIGHT="2340"
+        MOBILE="true"
       }
       steps {
         sh './mvnw clean test'

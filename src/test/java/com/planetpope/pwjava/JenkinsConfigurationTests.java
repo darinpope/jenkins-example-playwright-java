@@ -23,6 +23,7 @@ public class JenkinsConfigurationTests {
     private static Playwright playwright;
     private static Browser browser;
     private static boolean headless;
+    private static boolean mobile;
     private static int viewportHeight;
     private static int viewportWidth;
     private static String testUrl;
@@ -36,6 +37,8 @@ public class JenkinsConfigurationTests {
     @BeforeAll
     public static void setupRunner() {
         headless = Boolean.valueOf(System.getenv().getOrDefault("HEADLESS", "false"))
+                .booleanValue();
+        mobile = Boolean.valueOf(System.getenv().getOrDefault("MOBILE", "false"))
                 .booleanValue();
         viewportHeight = Integer.valueOf(System.getenv().getOrDefault("VIEWPORT_HEIGHT", "720"))
                 .intValue();
@@ -54,6 +57,7 @@ public class JenkinsConfigurationTests {
         context = browser.newContext(new NewContextOptions()
                 .setViewportSize(viewportWidth, viewportHeight)
                 .setRecordVideoDir(Paths.get("videos/"))
+                .setIsMobile(mobile)
                 .setRecordVideoSize(new RecordVideoSize(viewportWidth, viewportHeight)));
         page = context.newPage();
         videosFolder = Paths.get("videos/").toString();
