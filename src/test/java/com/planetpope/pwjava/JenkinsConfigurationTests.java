@@ -71,7 +71,8 @@ public class JenkinsConfigurationTests {
         page.waitForTimeout(2000);
         page.navigate(testUrl + "logout");
         page.waitForTimeout(2000);
-        writeVideo(page, "LoginLogout.webm");
+        String videoFilename = "LoginLogout-"+viewportWidth+"-"+viewportHeight+".webm";
+        writeVideo(page, videoFilename);
     }
 
     private void writeVideo(Page page, String videoFilename) {
