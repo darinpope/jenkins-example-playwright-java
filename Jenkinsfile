@@ -28,6 +28,15 @@ pipeline {
         sh './mvnw clean test'
       }
     }
+    stage('Run the test for 1080x2340') {
+      environment {
+        VIEWPORT_WIDTH="1080"
+        VIEWPORT_HEIGHT="2340"
+      }
+      steps {
+        sh './mvnw clean test'
+      }
+    }
   }
   post {
     success {
